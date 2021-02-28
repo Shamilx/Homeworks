@@ -1,0 +1,18 @@
+IntArray()
+FloatArray()
+DoubleArray()
+
+bu classlari yaradin
+Bu classlarin daxilinde novbeti funksionalliqlar olmalidir:
+1. Massivin icine element elave etmek
+2. Massivin butun elementlerini cap etmek
+3. Massivi random olaraq doldurmaq
+4. Massivin daxilinden elementi [] operatoru ile goturmek imkanini ve qiymetini deyishmek imkanini elde edin
+	int& operator[](int index);
+	int operator[](int index) const;
+5. Massivin butun elementlerine 0 qiymeti vermek ucun method (erase)
+6. Sonuncu elementi silmek ucun method (pop)
+7. Massivi yaddashdan silmek ucun method (size 0 olmalidir, ve heapden ayrilan yer azad olunmalidir)
+8. Insert(int index, __ element) -> massivin verilmish indeksine element elave etmek
+
+void print(T obj) -> funksiyasini yaradin. Hemin funksiyanin daxilinden massivinizin printArray() methodunu cagira bilmelisiniz\

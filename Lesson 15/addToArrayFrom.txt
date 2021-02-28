@@ -1,0 +1,93 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+vector<int> addToArrayForm(vector<int>& A, int K) 
+{
+    // Add k to vector]
+    if(K == 0 || K < 0) return A;
+    int temp = K;
+    vector<int> k;
+    while(temp>0)
+    {
+        k.push_back(temp%10);
+        temp/=10;
+    }
+    reverse(k.begin(), k.end());
+    
+    if(k.size() > A.size())
+    {
+        vector<int> temp = A;
+        A = k;
+        k = temp;
+    }
+    
+    //Find sum of them
+    int extra{};
+    int i = A.size() - 1;
+    int sizeArr = k.size() - 1;
+    while(true)
+    {
+        if(i == -1)
+        {
+            A.insert(A.begin(),1);
+            break;
+        }
+        if(sizeArr == -1)
+        {
+            if(A[i] == 9)
+            {
+                A[i] = 0;
+                if(i == 0 && A[i - 1] + 1 > 9)
+                {
+                    A.insert(A.begin(),1);
+                }
+                if(i == 0) break;
+                
+                
+                i--;
+                continue;
+            }
+            else
+            {
+                A[i] = A[i] + 1;
+                break;
+            }
+        }
+        if(A[i] + k[sizeArr] + extra < 10)
+        {
+            A[i] = A[i] + k[sizeArr] + extra;
+            
+        }
+        else
+        {
+            A[i] = (A[i] + k[sizeArr] + extra) - 10;
+            extra = 1;
+            i--;
+            sizeArr--;
+            continue;
+        }
+        
+        if(sizeArr == 0 || i == 0) break;
+        
+        extra = 0;
+        
+        i--;
+        sizeArr--;
+    }
+    
+    return A;
+}
+
+int main()
+{
+    vector<int> t = { 8,9,9,8,6,7,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9 };
+    vector<int> yes = addToArrayForm(t,10);
+    
+    for(int i =0;i < yes.size();i++)
+    {
+        cout << yes[i];
+    }
+}

@@ -1,0 +1,220 @@
+#include <iostream>
+#include <set>
+using namespace std;
+
+
+template <class T>
+class BinaryTreeNode
+{
+  
+public:
+  
+	T _value{};
+	BinaryTreeNode<T>* _left;
+	BinaryTreeNode<T>* _right;
+    BinaryTreeNode<T>* _parent;
+    
+    template<class Y>
+    friend class Set;
+    
+    BinaryTreeNode(T var) : _value(var) { }
+
+  
+
+
+};
+
+template <class T>
+class Set
+{
+private:
+    BinaryTreeNode<T>* root = NULL;
+    
+    int test = 0;
+    T* arr;
+    
+
+     void go(T num,BinaryTreeNode<T>* root)
+     {
+
+         if(num > root->_value)
+         {
+             if(root->_right == NULL)
+             {
+                root->_right = new BinaryTreeNode<T>(num);
+                root->_right->_right =  NULL;
+                root->_right->_left  =  NULL;
+                root->_right->_parent = root;
+                _count++;
+             }
+             else go(num,root->_right);
+         }
+         else if(num < root->_value)
+        {
+             if(root->_left == NULL)
+             {
+                root->_left = new BinaryTreeNode<T>(num);
+                root->_left->_right =  NULL;
+                root->_left->_left  =  NULL;
+                root->_left->_parent = root;
+                _count ++;
+             }
+             else go(num,root->_left);
+    
+         }
+     }
+
+    void deleteArray()
+    {
+        if(arr != NULL)
+            {
+                delete[] arr;
+                arr = new T[size()]{};
+            }
+        else arr = new T[size()]{};
+
+        test = 0;
+    }
+    
+    void sortArray()
+    {
+            int size2 = size();
+            bool check = true;
+            while(check == true)
+            {
+                check = false;
+                for(int i = 0;i < size2 - 1;i++)
+                {
+                   if(arr[i]>arr[i + 1])
+                   {
+                        check = true;
+                        swap(arr[i],arr[i + 1]);
+                   }         
+                }
+            }
+    }
+    
+public:
+    
+    int size()
+    {
+        return _count;
+    }
+    int _count=0;
+    
+    void insert(T num)
+    {
+        if(num == 0) return;
+        
+        if(root == NULL)
+        {
+            root = new BinaryTreeNode<T>(num);
+            root->_right =  NULL;
+            root->_left  =  NULL;
+            root->_parent = NULL;
+            _count++;
+        }
+        else go(num,root);
+    }
+   
+
+    void getToArray(BinaryTreeNode<T>* root)
+    {
+         deleteArray();
+         if (root != NULL) 
+         {
+             arr[test] = root->_value;
+             test++;
+             if(root->_left!=NULL) getToArray(root->_left);
+            
+             if(root->_right!=NULL) getToArray(root->_right);
+         }
+
+
+    }
+    void print()
+    {
+            if(size() == 0) return;
+
+            
+            int size2 = size();
+            
+            deleteArray();
+                
+            getToArray(root);
+            sortArray();
+
+            for(int i = 0;i < size2;i++) 
+            {
+                if(arr[i] != NULL)cout << arr[i] << endl;
+            }
+    }
+    
+    BinaryTreeNode<T>* find(T num)
+    {
+        if(root == NULL) return NULL;
+        
+        if(root->_value == num) return root;
+        else if(num> root->_value)  findNext(num,root->_right);
+        else if(num< root->_value ) findNext(num,root->_left);
+    }
+
+     BinaryTreeNode<T>* findNext(T num, BinaryTreeNode<T>* root)
+     {
+         if(num == root->_value)
+         {
+            return root;
+         }
+         else if(num> root->_value)findNext(num,root->_right);
+         else if(num< root->_value )findNext(num,root->_left);
+     }
+
+
+     void clear()
+     {
+         if(root==NULL) return;
+         else clearTest(root);
+     }
+     void clearTest(BinaryTreeNode<T>* root)
+     {
+         if (root != NULL) clearTest(root->_left);
+         if (root != NULL) clearTest(root->_right);
+         delete root;
+     }
+     
+     void erase(T num)
+     {
+         deleteArray();
+         getToArray(root);
+         int a = test;
+         clear();
+        
+         for(int i = 0;i < a;i++)
+         {
+             if(num == arr[i])
+             {
+                 arr[i] = 0;
+             }
+         }
+         
+         
+         root = NULL;
+        
+         for(int i = 0;i < a;i++)
+         {
+             insert(arr[i]);
+         }
+      }
+};
+
+int main()
+{
+    Set<int> a;
+    a.insert(10);
+    a.insert(20);
+    a.insert(30);
+    a.insert(40);
+    a.insert(50);
+
+}
+

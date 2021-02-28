@@ -1,0 +1,64 @@
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+class IntArray
+{
+private:
+	int* data{};
+	int size{};
+
+public:	
+	IntArray(){} 
+	IntArray(int size){ data = new int[size];}
+	
+	IntArray(int* arr,int size)
+	{
+		data = new int[size];
+		for(int i = 0;i < size;i++)
+		{
+			data[i] = arr[i];
+		}
+	}
+	
+	//
+	
+	void printArray()
+	{
+		if(data != NULL)
+		{
+			int size = sizeof(data) / sizeof(int);
+		}
+		else{
+		cout << "Fill array first!." << endl; return;
+		}
+		
+		for(int i = 0;i < size;i++)
+		{
+			cout << data[i] << endl;
+		}
+	}
+	
+	void setRandomElements() 
+	{
+		if(data == NULL)
+		{
+			cout << "Please create the array first!" << endl;
+			return;
+		}
+		
+		for(int i = 0;i < size;i++)
+		{
+			data[i] = rand() % 90 + 10;
+		}
+		
+	}
+	
+	
+};
+int main()
+{
+	srand(time(NULL));
+	
+}

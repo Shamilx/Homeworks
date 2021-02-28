@@ -1,0 +1,12 @@
+1. IntArray classini yaradin
+fieldleri:
+int* data, int size; Qeyd: Default inisializasiya edilen fieldlar olmalidir
+
+Constructorlari:
+1. IntArray() - Default: hecne etmir
+2. IntArray(int size) - int tipli parametr qebul eden: parametrde qeyd olunan eded qeder int tipli element ucun heapden massivinize yer ayirin
+3. IntArray(int* arr, int size) - massiv ve olcusunu qebul eden, eyni anda oz obyektinin massivini qebul edilen massivin elementleri ile inisializasiya edin
+
+Methodlar:
+void printArray() {} - massivinizi cap eden method
+void setRandomElements() {} - massivinizin butun elementlerine random qiymet veren method

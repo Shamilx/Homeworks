@@ -1,0 +1,120 @@
+#include <iostream>
+#include <stack>
+#include <assert.h>
+
+using namespace std;
+
+template <class Var>
+class Stack
+{
+    Var* massive;
+    
+    int _size;
+    int capacity;
+    
+public:
+    // A) Constructor to get storage from heap
+    Stack() : massive(new Var[10]{}), _size{}, capacity(10) {}
+    
+    // B) Reallocate
+    void reallocate()
+    {
+        Var* temp = new Var[capacity * 2]{};
+        
+        for(int i = 0;i < capacity;i++)
+            temp[i] = massive[i];
+        
+        delete[] massive;
+        
+        massive = new Var[capacity * 2]{};
+        
+        for(int i = 0;i < capacity * 2;i++)
+            massive[i] = temp[i];
+            
+        capacity = capacity * 2;
+    }
+    
+    // 1) push(Var)
+    void push(Var input)
+    {
+        if(_size == capacity) 
+            reallocate();
+            
+        massive[_size] = input;
+        
+        _size++;
+    }
+    
+    // 2) pop
+    void pop()
+    {
+        // size--,and delete last element 
+        
+        if(sizeof(massive[_size]) >= 8) 
+        {
+
+            
+            Var* temp = new Var[_size - 1]{};
+            
+            for(int i = 0;i < _size - 1;i++) 
+                temp[i] = massive[i];
+            
+            
+            
+            delete[] massive;
+            
+            massive = new Var[capacity]{};
+            
+            for(int i = 0;i < _size - 1;i++)
+                massive[i] = temp[i];
+                
+            _size--;
+            return;
+        }
+        else
+        {
+            if(_size > 0) _size--;
+            else assert(false && "FAILED!!!");
+        }
+    }
+    
+    // 3) print - for me
+    void print()
+    {
+        for(int i = 0;i < capacity;i++)
+            cout << massive[i] << endl;
+    }
+    
+    // 4) top
+    Var* top() { return &massive[_size - 1]; }
+    
+    // 5) size
+    int size() 
+    { 
+        return _size;
+    }
+    
+    // 6) empty
+    bool empty()
+    {
+        return !size();
+    }
+    
+    // 7)emplace
+    void emplace(Var input)
+    {
+        Var input2 = input;
+        massive[_size] = input2; // I dont know any other way
+    }
+};
+
+
+int main()
+{
+    
+    // push,emplace,pop,size,empty,top
+    
+    Stack<double> a;
+    a.emplace(5.2);
+    
+}

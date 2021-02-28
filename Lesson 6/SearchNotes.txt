@@ -1,0 +1,14 @@
+1.If you need to acsses private class fields you are going to use friend operator overloading.
+2.You cant overload this operators : 
+a).*
+b)?:
+c)::
+d).
+e)sizeof()
+
+
+3.when you are overloading [] this operators use & in front of operator like :
+
+int &operator[](int i) { WHY?
+
+}

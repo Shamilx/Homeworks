@@ -1,0 +1,243 @@
+#include <iostream>
+#include <assert.h>
+#include <list>
+using namespace std;
+
+template<class Var1>
+class Node
+{
+private:
+    Var1 _data;
+    Node* next;
+    template<class U>
+    friend class List;
+    
+public:
+    Node(Var1 data) : _data(data), next(NULL) { }
+    
+    int getData() { return _data; }
+};
+
+template<class Var2>
+class List
+{
+    Node<Var2>* title{};
+    int size{};
+    
+public:
+
+
+class iterator
+{
+        Node<Var2>* value1;
+        Node<Var2>* value2;
+        
+public:
+    
+    void operator=(Node<Var2>* input)
+    {
+        value1 = input;
+       
+    }
+    
+    int& operator++()
+    {   
+        int returnme;
+        this->value1 = this->value1->next;
+    }
+    
+    bool operator<(Node<Var2>* input)
+    {
+        value2 = input;
+        
+        if(input->next == NULL)
+        {
+            return 0;
+        }
+        return 1;
+    }
+    
+    friend ostream& operator<<(ostream& os,iterator& input)
+    {
+        os << input.value1->getData() << endl;
+        return os;
+    }
+    
+
+    
+};
+    
+    ~List() { if(title != NULL) delete[] title; }
+    void push_back(Var2 val)
+    {
+       Node<Var2>* myNode = new Node<Var2>(val);
+       if(title == NULL)
+       {    
+           title = myNode;
+           myNode->next = NULL;
+       }
+       else
+       {
+         Node<Var2>* temp = title;
+         while(temp->next != NULL) { temp  = temp->next; }
+         temp->next = myNode;
+         myNode->next = 0;
+       }
+       size++;
+    }
+
+    void push_front(Var2 val)
+    {
+        Node<Var2>* myNode = new Node<Var2>(val);
+        if(title == NULL)
+        {
+            title = myNode;
+            myNode->next = NULL;
+        }
+        else
+        {
+            myNode->next = title;
+            title = myNode;
+        }
+    }
+
+    void pop_back()
+    {
+            if (size == 0) assert(false && "INPUT A DATA");
+            else if (size == 1)
+            {
+                delete title;
+                title = NULL;
+            }
+            else
+            {
+                Node<Var2>* prev = title;
+                Node<Var2>* current = title->next;
+                while (current->next != NULL)
+                {
+                    prev = current;
+                    current = current->next;
+                }
+                prev->next = NULL;
+                delete current;
+            }
+            size--;
+    }
+
+    void pop_front()
+    {
+        if(size == 0)  return;
+        else if(size == 1)
+        {
+            delete title;
+            title = NULL;
+        }
+        else 
+        {
+            Node<Var2>* temp = title->next;
+            delete title;
+            title = temp;
+        }
+    }
+
+    Var2 back()
+    {
+        if(size == 0) return 0;
+        else
+        {
+            Node<Var2>* temp = title;
+            while(temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            return temp->_data;
+        }
+    }
+
+    Node<Var2>* begin()
+    {
+        if(size == 0) return 0;
+        return title;
+    }
+
+    Node<Var2>* end()
+    {
+        if(size == 0) 
+        {
+            assert(false && "Corrupted");
+        }
+        
+        Node<Var2>* temp = title;
+        while(temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        return temp;
+    }
+    Node<Var2>* cbegin() const { return begin(); }
+    
+    Node<Var2>* rbegin()
+    {
+            Node<Var2>* temp = title;
+            while(temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            return temp;
+    } 
+
+
+    Node<Var2>* rend()
+    {
+        return title;
+    }
+    
+    Node<Var2>* cend() const{ return  end(); }
+
+    void clear()
+    {
+        while(size)
+        {
+            pop_back();
+            size--;
+        }
+    }
+    
+
+    bool empty() { return !size; }
+    Var2& front() { return begin(); }
+
+    
+    void printList()
+	{
+		Node<Var2>* temp = title;
+		while (temp != NULL)
+		{
+			cout << temp->_data << endl;
+			temp = temp->next;
+		}
+	}
+	
+	
+};
+
+
+int main()
+{
+   List<int> listt;
+   listt.push_back(6);
+   listt.push_back(8);
+   
+   List<int>::iterator a;
+   
+   
+   for(a = listt.begin();a < listt.end();++a)
+   {
+        
+        cout << a << endl; // dereference operator have a lot of errors
+        // doesnt work because of line 53
+   }
+
+   
+}
+

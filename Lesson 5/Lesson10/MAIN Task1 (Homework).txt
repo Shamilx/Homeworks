@@ -1,0 +1,6 @@
+Lesson8-de task1.txt ile qeyd olunan tapshirigdaki class-inizi genishlendirin:
+
+Class-daki butun constructorlari explicit olaraq qeyd edin
+String tipinde object yaradildiqdan sonra, hemin objectin nece defe edit edildiyini hesablayan const method yaradin (hansi tipde ve nece bir field yaradacaginizi ozunuz teyin edin)
+
+Class-dan kenarda print(const char* p) funksiyasi yaradin, hemin funksiya qebul etdiyi setri cap etmelidir

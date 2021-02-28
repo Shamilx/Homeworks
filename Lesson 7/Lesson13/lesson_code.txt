@@ -1,0 +1,135 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+// Static polymorphism - YENI MOVZU : Function overloading, operator overloading
+// Compilyasiya zamani mueyyen funksiyalar ve operatorlar nece ishleyeceyini teyin edirik
+
+// Polymorphism
+// Dynamic - Runtime zamani mueyyen funksiyalar ve operatorlar nece ishleyeceyini teyin edirik
+
+// Inheritance - class-larin bir birinden toreme bacarigi
+
+class Neqliyyat
+{
+public:
+	int tekerSayi{};
+	int benzinSerfiyyati;
+	int ortalamaSuret;
+	int sernishinSayi;
+	int maksimalYuk;
+	
+	virtual void Move() {}
+};
+
+class Avtomobil : public Neqliyyat
+{
+	bool isForRace;
+	void Move()
+	{
+		cout << "Car moving!\n";
+	}
+};
+
+class Avtobus : public Neqliyyat
+{
+	void Move()
+	{
+		cout << "Avtobus moving!\n";
+	}
+};
+
+class Kvadrosikl : public Neqliyyat
+{
+	void Move()
+	{
+		cout << "Kvadrosikl moving!\n";
+	}
+};
+
+class Trolleybus : public Neqliyyat
+{
+	void Move()
+	{
+		cout << "Trolleybus moving!\n";
+	}
+};
+
+class Base
+{
+public:
+	virtual void get() {}
+};
+
+class A : public Base
+{
+	int _field{};
+
+public:
+	A(int f) : _field(f) {}
+	void get() { cout << _field << endl; }
+};
+
+class B : public Base
+{
+	int _field1{};
+	int _field2{};
+
+public:
+	B(int a, int b) : _field1(a), _field2(b) {}
+	void get() { cout << _field1 + _field2 << endl; }
+};
+
+
+int main()
+{
+	
+	A objA(123); 
+	B objB(123, 456);
+	vector<Base> arr{ objA, objB };
+	B objB2(333, 666);
+	arr.push_back(objB2);
+
+	//Base* arr = new Base[2]{ objA, objB };
+	//Base* temp = new Base[3];
+	//for (int i = 0; i < 2; i++)
+	//{
+	//	temp[i] = arr[i];
+	//}
+	//delete[] arr;
+
+	//arr = new Base[3];
+	//for (int i = 0; i < 2; i++)
+	//{
+	//	arr[i] = temp[i];
+	//}
+	//delete[] temp;
+
+	//B objB2(333, 666);
+	//arr[2] = objB2;
+
+
+	//for (int i = 0; i < 2; i++)
+	//{
+	//	arr[i].get();
+	//}
+}
+
+
+//Neqliyyat* neqliyyatlar[4]{ new Avtobus, new Avtomobil, new Kvadrosikl, new Trolleybus };
+
+//for (int i = 0; i < 4; i++)
+//{
+//	neqliyyatlar[i]->Move();
+//}
+
+// Telebe
+// Group
+
+// Group - telebelerden ibaret olur
+// Group - telebedir // NO INHERITANCE
+
+// Avtomobil - Neqliyyatdir
+// Aqreqasiya, Kompozisiya
+// 

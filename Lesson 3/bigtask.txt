@@ -1,0 +1,158 @@
+#include <iostream>
+#include <string>
+#include <iomanip>   
+
+using namespace std;
+
+class Mushteri
+{
+public:
+	static int id;
+	static string accountId;
+
+	string _accountid;
+	string name{};
+	double balance{};
+
+	int temp = 99400000;
+public:
+	static Mushteri* list[30];
+
+
+
+	Mushteri(string n_ame, int b_alance = 0) // This constructs +1 to id and auto generates accountId
+	{
+		id = id + 1;
+		name = n_ame; balance = b_alance;
+
+		if (id <= 99999)
+		{
+			temp += id;
+			accountId = to_string(temp);
+		}
+		_accountid = accountId;
+
+	}
+
+
+
+	static void NewCustomer(string name, int balance = 0) { list[id] = new Mushteri(name, balance); };
+
+
+	string GetAccountNumber() { return _accountid; }
+	string getName(){ return name; }
+	double getBalance() { return balance; }
+
+
+	void AddToBalance(double balance){ this->balance += balance; }
+	void GetCash(double balance){ this->balance -= balance; }
+
+	~Mushteri()
+	{
+
+	}
+
+};
+
+class MushteriList
+{
+
+public:
+	void print()
+	{
+		for (int i = 1; i < 30; i++)
+		{
+			if (Mushteri::list[i] != NULL){
+				cout
+					<< Mushteri::list[i]->name << "\t\t"
+					<< Mushteri::list[i]->_accountid << "\t\t"
+					<< Mushteri::list[i]->balance << "\t\t"
+					<< fixed << endl;
+			}
+			else
+			{
+
+			}
+		}
+
+	}
+
+	void deleter(string accountId)
+	{
+		for (int i = 1; i < 30; i++)
+		{
+			if (Mushteri::list[i] != NULL)
+			{
+				if (accountId == Mushteri::list[i]->_accountid)
+				{
+					Mushteri::list[i]->~Mushteri();
+					break;
+				}
+			}
+			else break;
+		}
+	}
+}list;
+
+class Search
+{
+public:
+	void print(string accountId)
+	{
+		for (int i = 1; i < 30; i++)
+		{
+			if (Mushteri::list[i] != NULL)
+			{
+				if (accountId == Mushteri::list[i]->_accountid)
+				{
+
+					cout
+						<< Mushteri::list[i]->name << "\t\t"
+						<< Mushteri::list[i]->_accountid << "\t\t"
+						<< Mushteri::list[i]->balance << "\t\t"
+						<< fixed << endl;
+					break;
+				}
+			}
+			
+		}
+	}
+
+	void Name(string name)
+	{
+		for (int i = 0; i < 30; i++)
+		{
+			if (Mushteri::list[i] != NULL)
+			{
+				if (name == Mushteri::list[i]->name)
+				{
+					print(Mushteri::list[i]->_accountid);
+				}
+			}
+		}
+	}
+}search;
+
+
+int Mushteri::id = 0;
+string Mushteri::accountId = "";
+Mushteri* Mushteri::list[] = {};
+
+
+int main()
+{
+	Mushteri::NewCustomer("Shamil");
+	Mushteri::NewCustomer("Kamil");
+	Mushteri::NewCustomer("Orxan");
+	
+	//Mushteri funksiyasi bir problem var Destructor ise dusende double
+	//tipli balansi silmir....
+	
+	// Bu kodda bir problem var balance silinmir...
+	//Mushteri::NewCustomer("Shamil");
+	//Mushteri::NewCustomer("Kamil");
+	//Mushteri::NewCustomer("Orxan");
+	//list.print();
+	//list.deleter("99400001");
+	//list.print();
+}

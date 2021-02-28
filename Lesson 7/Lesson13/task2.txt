@@ -1,0 +1,8 @@
+IntArray()
+FloatArray()
+DoubleArray()
+
+her bir class-in objectini yaradin
+bu objectleri bir massive nece yiga bilersiniz?
+
+bu objectleri massive yigib, sonra massivin daxilinden for-la her bir element ucun printArray() methodunu cagirin

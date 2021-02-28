@@ -1,0 +1,12 @@
+class Solution {
+public:
+    bool isSameTree(TreeNode* myFirst, TreeNode* mySecond) {
+    if(myFirst == NULL && mySecond == NULL) return true;
+        
+    if (myFirst == NULL || mySecond == NULL) return false;
+        
+    if (myFirst->val != mySecond->val) return false;
+        
+    return isSameTree(myFirst->right, mySecond->right) && isSameTree(myFirst->left, mySecond->left);
+  }
+};

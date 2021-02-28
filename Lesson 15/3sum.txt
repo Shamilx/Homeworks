@@ -1,0 +1,83 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+    
+vector<vector<int>> threeSum(vector<int>& nums) 
+{
+        
+        vector<vector<int>> result;
+        vector <int> input;
+        int res{};
+        int countt{};
+        
+        bool _end = false;
+        int a = nums.size();
+
+        if(a < 3) 
+            return result;
+
+        if(nums.empty()) 
+            return result;
+            
+
+        
+        for(int i = 0;i < a;i++)
+        for(int j = i + 1;j < a;j++)
+        for(int k = j + 1;k < a;k++)
+        {
+            if(nums[i] == nums[j] || nums[i] == nums[k])
+            {
+                res = count(nums.begin(),nums.end(),nums[i]);
+                if(res == 1) continue;
+            }
+            
+            if(nums[j] == nums[i] || nums[j] == nums[k])
+            {
+                res = count(nums.begin(),nums.end(),nums[j]);
+                if(res == 1) continue;
+            }
+            
+            if(nums[k] == nums[i] || nums[k] == nums[j])
+            {
+                res = count(nums.begin(),nums.end(),nums[k]);
+                if(res == 1) continue;
+            }
+            
+
+            if((nums[i] + nums[j] + nums[k]) == 0) 
+            {
+                input = {nums[i],nums[j],nums[k]};
+                sort(input.begin(),input.end());
+                for(int x = 0;x < result.size();x++)
+                {
+                   for(int d = 0;d < result[0].size();d++)
+                   {
+                      _end = false;
+                      if(result[x][d] == input[d])
+                      {
+                          countt++;
+                      }
+                      
+                      if(countt == 3) { _end = true; countt = 0; break;}
+                   }
+                   if(_end) break;
+                   countt = 0;
+                }
+                if(_end) continue;
+                
+              result.push_back(input);      
+            }
+        }
+        return result;
+    
+}
+
+int main()
+{
+    vector<int> a {1,2,3,0,-3} ;
+    vector<vector<int>> f = threeSum(a);
+ 
+    
+}

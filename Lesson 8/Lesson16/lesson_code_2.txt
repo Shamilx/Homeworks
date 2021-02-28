@@ -1,0 +1,102 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class Students
+{
+	int _field1;
+	double _field2;
+};
+
+template <class T, class U>
+class Array
+{
+	T* ptr{};
+	U _data;
+	int size{};
+
+public:
+	Array() {}
+	Array(int s) : ptr(new T[s]), size(s) {}
+
+	void printArray()
+	{
+
+	}
+
+	void FillRandom()
+	{
+		if (is_same<T, int>::value)
+		{
+			cout << "is_same<T, int>::value = true!\n";
+		}
+		else if (is_same<T, double>::value || is_same<T, float>::value)
+		{
+			cout << "is_same<T, double>::value || is_same<T, float>::value = true!\n";
+		}
+
+		// int -> rand() % 100
+		// float, double -> rand() % 1000 / 10.0
+	}
+};
+
+class IntArray
+{
+	int* ptr{};
+	int size{};
+
+public:
+	IntArray() {}
+	IntArray(int s) : ptr(new int[s]), size(s) {}
+};
+
+class DoubleArray
+{
+	double* ptr{};
+	int size{};
+
+public:
+	DoubleArray() {}
+	DoubleArray(int s) : ptr(new double[s]), size(s) {}
+};
+
+class FloatArray
+{
+	float* ptr{};
+	int size{};
+
+public:
+	FloatArray() {}
+	FloatArray(int s) : ptr(new float[s]), size(s) {}
+};
+
+template <class T>
+class Stack
+{
+	T arr[10]{};
+	// ....
+
+public:
+	Stack() {}
+	T push_back(T x);
+	T pop_back();
+};
+
+// ___ print(___)
+// {
+// stack-ini cap etmek
+// }
+
+int main()
+{
+	stack<int> myStack;
+	
+	//Array<int, double> iArr(12);
+	//Array<double, int> dArr(6);
+	//Array<float, float> fArr(7);
+	//Array<Students, Students> aaArr(1);
+
+	//dArr.FillRandom();
+
+	//Stack<int> myStack; // 10 elementlik yer ayrilir
+}

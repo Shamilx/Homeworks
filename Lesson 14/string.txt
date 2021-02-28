@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+using namespace std;
+
+
+
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        long long int sum = 0;
+        
+        
+        for(int i = 0;i < num1.length();i++)
+        {
+            char digit = num1[i] - '\0';
+            int x = digit - '0';
+            
+            sum = sum + (x * pow(10,(num1.length() - i - 1)));
+        }
+        
+        
+        for(int i = 0;i < num2.length();i++)
+        {
+            char digit2 = num2[i] - '\0';
+            int x2 = digit2 - '0';
+
+            sum = sum + (x2 * pow(10,(num2.length() - i - 1)));
+        }
+        
+        
+        string b = to_string(sum);
+        return b;
+    }
+};
+
+
+int main()
+{
+    Solution obj1;
+    
+ 
+   string a = "1231231237";
+   string b = "101234567890";
+
+   cout << obj1.addStrings(a,b);
+
+    
+    
+
+}

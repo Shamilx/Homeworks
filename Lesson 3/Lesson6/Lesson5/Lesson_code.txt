@@ -1,0 +1,84 @@
+#include<iostream>
+using namespace std;
+
+// static field - class-in ozune aid olan fieldlere deyilir
+// bu fieldlerden istifade etmek ucun, size class-in objectini yaratmaq
+// mutleq deyil
+
+// static fieldler class-in her bir objecti ucun eyni qiymetde olurlar
+// cunki 1 class-in static field-i varsa, hemin class-in butun obyektleri
+// o static field-e muraciet etdikde, eyni adresde yerleshen melumata 
+// muraciet edirler
+
+//class Student
+//{
+//	static int st_id;
+//	int _id{};
+//	string _name{};
+//public:
+//	Student()
+//	{ 
+//		_id = st_id++;
+//	}
+//	Student(string name) 
+//	{
+//		_name = name;
+//		_id = st_id++;
+//	}
+//
+//	void print()
+//	{
+//		cout << _name << "\t" << _id << endl;
+//	}
+//};
+//
+//int Student::st_id = 1;
+//
+//class A
+//{
+//public:
+//	static int a;
+//	int b{};
+//	int c{};
+//};
+//int A::a = 5;
+
+class Math
+{
+public:
+	static int sum(int a, int b)
+	{
+		return a + b;
+	}
+	Math() = delete;
+};
+
+int main()
+{
+	cout << Math::sum(5, 6) << endl;
+
+	//A obj1;
+	//A obj2;
+	//A obj3;
+
+	//cout << "&(obj1.a): " << &(obj1.a) << endl;
+	//cout << "&(obj2.a): " << &(obj2.a) << endl;
+	//cout << "&(obj3.a): " << &(obj3.a) << endl;
+	//cout << "&(obj1.b): " << &(obj1.b) << endl;
+	//cout << "&(obj2.b): " << &(obj2.b) << endl;
+	//cout << "&(obj3.b): " << &(obj3.b) << endl;
+	//cout << "&(obj1.c): " << &(obj1.c) << endl;
+	//cout << "&(obj2.c): " << &(obj2.c) << endl;
+	//cout << "&(obj3.c): " << &(obj3.c) << endl;
+
+
+	//Student s1;
+	//Student s2("Orxan");
+	//Student s3;
+	//Student s4("Aqil");
+
+	//s1.print();
+	//s2.print();
+	//s3.print();
+	//s4.print();
+}

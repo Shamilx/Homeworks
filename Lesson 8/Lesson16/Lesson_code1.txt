@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+
+template <class T>
+class Array
+{
+	T* ptr{};
+	int size{};
+
+public:
+	Array() {}
+	Array(int s) : ptr(new T[s]), size(s) {}
+
+	void printArray()
+	{
+
+	}
+
+	void FillRandom()
+	{
+		if (is_same<T, int>::value)
+		{
+			cout << "is_same<T, int>::value = true!\n";
+		}
+		else if (is_same<T, double>::value || is_same<T, float>::value)
+		{
+			cout << "is_same<T, double>::value || is_same<T, float>::value = true!\n";
+		}
+
+		// int -> rand() % 100
+		// float, double -> rand() % 1000 / 10.0
+	}
+};
+
+class IntArray
+{
+	int* ptr{};
+	int size{};
+
+public:
+	IntArray() {}
+	IntArray(int s) : ptr(new int[s]), size(s) {}
+};
+
+class DoubleArray
+{
+	double* ptr{};
+	int size{};
+
+public:
+	DoubleArray() {}
+	DoubleArray(int s) : ptr(new double[s]), size(s) {}
+};
+
+class FloatArray
+{
+	float* ptr{};
+	int size{};
+
+public:
+	FloatArray() {}
+	FloatArray(int s) : ptr(new float[s]), size(s) {}
+};
+
+int main()
+{
+	Array<int> iArr(12);
+	Array<double> dArr(6);
+	Array<float> fArr(7);
+
+	dArr.FillRandom();
+}

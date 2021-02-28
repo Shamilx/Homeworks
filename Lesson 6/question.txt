@@ -1,0 +1,46 @@
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int counter(char* data) 
+{
+    int countx{};
+    while(data[countx] != NULL) countx++;
+    return countx;
+}
+
+class Test
+{
+private:
+    char* data;
+public:
+    Test(char* data)
+    {
+        this->data = new char[counter(data) + 1];
+        strcpy_s(this->data,counter(data) + 1,data);
+    }
+    
+    bool operator==(Test& ref1);
+    
+    char* returnData() { return data; }
+    
+};
+bool operator==(Test& ref1,Test& ref2) 
+{
+    cout << &ref1 << endl;
+    cout << &ref2 << endl;
+    return 1;
+}
+
+int main()
+{
+    Test obj1("Hey");
+    Test obj2("Lol");
+    cout << (obj1 == obj2) << endl;   // this must return 1
+}
+
+
+error: ambiguous overload for 'operator==' (operand types are 'Test' and 'Test')
+
+// the problem is at 24th line... i must type friend to there...

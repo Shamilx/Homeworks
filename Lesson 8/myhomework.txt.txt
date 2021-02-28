@@ -1,0 +1,114 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <assert.h>
+#include <stack> // for test
+
+
+
+using namespace std;
+
+template <class var>
+
+class Stack
+{
+private:
+    var* stock{};
+    int size;
+    int temp;
+    
+   
+    
+public:
+    Stack(int size2 = 10) : size{size2},temp{size2 - 1}
+    {
+        stock = new var[size2]{};
+    }
+    
+    void push(var number)
+    {
+        
+        if(temp >= 0)
+        {
+            stock[temp] = number;
+            temp--;
+
+        }
+
+    }
+    
+    void pop()
+    {
+        if(temp <= 9)
+        {
+            stock[temp + 1] = 0;
+            temp++;
+        }
+    }
+    
+    var top()
+    {
+        if(temp > 0 && temp < 9) return stock[temp + 1];
+        else return 0;
+    }
+    
+    void printArr()
+    {
+        for(int i = 0;i < size;i++) 
+        {
+            stock[i] != 0 && cout << stock[i] << endl;
+        }
+    }
+};
+
+
+
+
+void printStack(stack<int> a)
+{
+    if(a.empty()) return;
+    
+    int x = a.top();
+    
+    a.pop();
+    
+ 
+    
+    cout << x << endl;
+    
+    printStack(a);
+       
+    a.push(x);
+    
+}
+ 
+int main()
+{
+//    stack<int> myStack;
+//    
+//    myStack.push(10);
+//    myStack.push(20);
+//    myStack.push(30);
+//    myStack.push(40);
+//    myStack.push(50);
+//  
+//    myStack.pop();
+//    
+//
+//    
+//    printStack(myStack);
+//    cout << endl << endl;
+//  
+    //Stack
+    Stack<int> myStack2;
+  
+
+    myStack.push(10);
+    myStack.push(20);
+    myStack.push(30);
+    myStack.push(40);
+    myStack.push(50);
+    
+    printStack(myStack);
+    cout << "TOP : " << myStack2.top() << endl;
+}

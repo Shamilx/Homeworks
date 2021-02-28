@@ -1,0 +1,106 @@
+#include <iostream>
+using namespace std;
+
+class Test
+{
+	int _data{};
+
+public:
+	Test() {}
+	Test(int data) : _data(data) {}
+
+	void setData(int data) { _data = data; }
+	int  getData() { return _data; }
+};
+
+class TestExplicit
+{
+	int _data{};
+
+public:
+	TestExplicit() {}
+	explicit TestExplicit(int data) : _data(data) {}
+
+	void setData(int data) { _data = data; }
+	int  getData() { return _data; }
+};
+
+class String
+{
+	char* s{};
+	int size{};
+	double _x{};
+
+public:
+	String() { s = NULL; size = 0; }
+
+	explicit String(double x) {}
+
+	explicit String(int count)
+	{
+		size = count;
+		s = new char[size];
+	}
+	explicit String(const char* str)
+	{
+		size = strlen(str);
+		s = new char[size + 1];
+		strcpy_s(s, size + 1, str);
+	}
+
+	~String()
+	{
+		if (s != NULL)
+		{
+			delete[] s;
+			s = NULL;
+		}
+	}
+
+	void print()
+	{
+		cout << "I'm an object of String class!\t";
+		cout << s << endl;
+	}
+};
+
+
+void print(String s) // const char* str -> String
+{
+	s.print();
+}
+
+void print(String y)
+{
+	
+}
+
+void print(const char* str)
+{
+	cout << str << endl;
+}
+
+int main()
+{
+	//String str(15);
+	//String str2("Hello, explicit!\n");
+
+	//print(str);
+	//print(str2);
+
+	print("Hello, good luck, i'm a little string!"); // 
+	String str("Hello, good luck!\n");
+	print(str);
+
+	print(123.34);
+
+
+
+
+	//Test t1;
+	//Test t2(10);
+	//Test t3 = 15; // Test t3(15);
+	//cout << t3.getData() << endl;
+
+	//TestExplicit t3 = 15;
+}

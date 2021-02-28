@@ -1,0 +1,132 @@
+
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+template <class Var>
+class Queue
+{
+    Var* massive;
+    
+    int capacity;
+
+    
+    int _front{};
+    int _rear{};
+    
+     void reallocate()
+     {
+        Var* temp = new Var[capacity * 2]{};
+        
+        for(int i = 0;i < capacity;i++)
+            temp[i] = massive[i];
+        
+        delete[] massive;
+        
+        massive = new Var[capacity * 2]{};
+        
+        for(int i = 0;i < capacity * 2;i++)
+            massive[i] = temp[i];
+            
+        capacity = capacity * 2;
+     }
+public:
+    
+    Queue() : capacity(10), massive(new Var[capacity]{}) {}
+    ~Queue() { if(massive != NULL) delete[] massive; }
+    
+    int size()
+    {
+        return _rear - _front;
+    }
+    
+    bool empty()
+    {
+        return !size();
+    }
+    
+    void push(Var input)
+    {
+        if(size() == capacity)
+            reallocate();
+        
+        massive[_rear] = input;
+        _rear++;
+            
+    }
+    
+    void pop() // first method
+    {
+        if(empty()) return;
+        
+        _front++;
+        
+    }
+    
+    
+    void pop_back() // second method (to delete heap storages)
+    {
+        delete(massive[0]);
+        
+        for(int i = 0;i < capacity;i++)
+        {
+            if(massive[i] != NULL) massive[i] = massive[i + 1];
+            else break;
+        }
+        // TODO:OVERLOAD IT FOR HEAP STORAGES
+        // how can they work simultaneously? 
+
+        
+        _rear--;
+    }
+    
+    
+    Var& front()
+    {
+        return massive[_front];
+    }
+    
+    Var& back()
+    {
+        return massive[_rear - 1];
+    }
+    
+    void print() // to print numbers
+    {
+        cout << "CAPACITY : " << capacity << endl;
+        for(int i = 0;i < capacity;i++)
+        {
+            cout << massive[i] << " ";
+        }
+        cout << "\n--------------------------" << endl;
+    }
+    
+    Var& get(int index = 0) // for me
+    {
+        return massive[index]; 
+    }
+    
+    void printArray() // to printArray
+    {
+        for(int i = 0;i < 10;i++)
+        {
+            if(massive[i] == NULL) break;
+            
+            cout << i << " ARRAY : ";
+            for(int j =0;j < 5;j++)
+            {
+                cout << (massive[i])[j] << " "; 
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main()
+{
+    Queue<int> a;
+    a.push(5);
+    a.pop();
+    a.print();
+}
