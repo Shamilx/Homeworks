@@ -1,0 +1,52 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class pet
+{
+protected:
+   string name,color;
+   short age;
+   short bigness; // 1 - small,2 - normal,3 - huge
+
+public:
+       // name,color,age,bigness
+          pet(string _name,string _color,short _age,short _bigness) 
+            : name(_name),color(_color),age(_age),bigness(_bigness){}
+            
+       void editPet(string _name,string _color,short _age,short _bigness)
+       {
+           name = _name; color = _color; age = _age; bigness = _bigness;
+       }
+        
+       void printPet()
+       {
+           cout << "NAME" << setw(10) << ":   " << name << endl;
+           cout << "BIGNESS" << setw(7) << ":   " << bigness << endl;
+           cout << "COLOR" << setw(9) << ":   " << color << endl;
+           cout << "AGE" << setw(11) << ":   " << age << endl;
+       }
+};
+
+class Dog : public pet
+{
+public:
+    using pet::pet;
+};
+
+class Cat : public pet
+{
+public:
+    using pet::pet;
+};
+
+class Parrot : public pet
+{
+public:
+    using pet::pet;
+};
+int main()
+{
+    Dog b("dog","yellow",5,1);
+    b.printPet();
+}
