@@ -1,0 +1,100 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+class BinaryTreeNode
+{
+public:
+    int value{};
+    BinaryTreeNode* right{};
+    BinaryTreeNode* left{};
+    
+
+
+};
+class BinaryTree
+{
+    BinaryTreeNode* root;
+public:
+    BinaryTree() : root(new BinaryTreeNode) {};
+
+    void push(int _value)
+    {
+        if (root->value == NULL) { root->value = _value; return; }
+
+        BinaryTreeNode* go = root;
+        BinaryTreeNode* previous = root;
+        int goo = 0;
+        bool gooo = 0; // 0 right,1 left
+        while (true)
+        {
+            if (_value > go->value) { go = go->right; gooo = 0; }
+            else if (_value < go->value) { go = go->left; gooo = 1; }
+
+            if (go == NULL)
+            {
+                go = new BinaryTreeNode;
+                go->value = _value;
+                if (gooo)
+                    previous->left = go;
+                else
+                    previous->right = go;
+                break;
+            }   
+            else
+            {
+                if (gooo)
+                    previous = previous->left;
+                else
+                    previous = previous->right;
+            }
+        }
+    }
+
+    void print()
+    {
+        vector<int> test; print2(root,test);
+        sort(test.begin(),test.end());
+        for(int i = 0;i < test.size();i++)
+            cout << test[i] << endl;
+    }
+
+    vector<int> print2(BinaryTreeNode* root,vector<int>& hey)
+    {
+        if (root == NULL) return hey;
+        hey.push_back(root->value);
+        print2(root->left,hey);
+        print2(root->right,hey);
+        return hey;
+    }
+    
+    void printInorder()
+    {
+        printInorder2(root);
+    }
+    
+    void printInorder2(BinaryTreeNode* root)
+    {
+        if (root == NULL) return;
+        printInorder2(root->left);
+        cout << root->value << endl;
+        printInorder2(root->right);
+
+    }
+    
+};
+int main()
+{
+
+    BinaryTree test;
+    test.push(20);
+
+    test.push(10);
+    test.push(30);
+    test.push(5);
+    test.push(15);
+    test.push(25);
+    test.push(35);
+    test.printInorder();
+}
