@@ -1,9 +1,0 @@
-classMushteriList
-
-bu class-da novbeti funksionalliq olmalidir:
-
-mushterini siyahiya elave etmek
-
-siyahidaki butun mushterileri cap etmek (etrafli, cedvel sheklinde, cout-a aid setw, setprecision, fixed melumatlari oxuyun)
-
-siyahidan mushterini silmek (mushteri silinen zaman avtomatik olaraq ona ayrilmish yaddash hissesi azad edilmelidir)

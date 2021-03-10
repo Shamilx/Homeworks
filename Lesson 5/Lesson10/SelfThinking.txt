@@ -1,1 +1,0 @@
-Nece olur ki, meThodun yaninda const acar sozunu yazanda, compiler basha dushur ki, bu metHod vasItesi ile obyektin field-lerini deyiShmek olmaz?

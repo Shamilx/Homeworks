@@ -1,4 +1,0 @@
-Bize ne lazimdi bize fielderdeki deyerlerin eyniliyinin qarsisini almaq lazimdir onda bir nece yolumuz var
-1.Doldurarken diger fieldlerin daxilinde yoxlasin hara gede bileceyini tapsin ve getsin
-2.Doldurub qurtarandan sonra da yoxlaya bileremki eynidir ya yox eynidirse onda yeniden doldursun
-3.
