@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+namespace Test
+{
+    void doMagic()
+    {
+        cout << "I did magic!\n"; 
+    }
+
+    int num = 20;
+}
+
+int main()
+{
+    int num = 30;
+    Test::doMagic();
+    cout << num << endl; // 30
+    cout << Test::num << endl; // 20
+
+    //  Namespace are used to avoid same vairable,function name
+    // in same scope...
+
+}

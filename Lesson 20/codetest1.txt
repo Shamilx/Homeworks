@@ -1,0 +1,31 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+class Test
+{
+public:
+    int a;
+};
+
+namespace Eku
+{
+    class Test
+    {
+    public:
+        int b;
+        int c;
+    };
+};
+
+// using namespace Eku : causing error (Test is ambigous)
+
+int main()
+{
+    
+    // Test obj;
+    // obj.a;
+    // Eku::Test obj;
+    // obj.b;
+    // obj.c;
+}

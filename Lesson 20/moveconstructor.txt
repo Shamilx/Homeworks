@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Test
+{
+private:
+    int* data;
+public:
+    Test() { cout << "Data created and adress is "; data = new int[10]; cout << data << endl; }
+    Test(int data) { cout << "Constructor 2 called\n" << data << endl; } 
+    void getData() { cout << data << endl; } 
+
+    Test(const Test& obj)
+    {
+        cout << "Copy constructor\n";
+        getData();
+    }
+
+    Test(Test&& obj)    // Move constructor
+    {
+        cout << "Move Constructor\n";
+        getData();
+    }
+};
+
+int main()
+{
+    vector<Test> obj;
+    obj.push_back(Test{15});
+    // didnt understand
+}
