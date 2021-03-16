@@ -1,0 +1,65 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    ifstream fin("hey.txt");
+    ofstream out("output.txt");
+
+    string myWord;
+
+    getline(fin,myWord);
+
+    int i{};
+    while(myWord.length() != i)
+    {
+        if(myWord[i] == ' ') { i++; continue; }
+
+        if(myWord[i] - 3 >= 65 && myWord[i] - 3 <= 90)
+        {
+            myWord[i] = myWord[i] - 3;
+        }
+        else
+        {
+            myWord[i] = myWord[i] - 3 + 26;
+        }
+        i++;
+    }
+
+    fin.close();
+
+    out << myWord << endl;
+    out.close();
+    
+    // Shifting
+    ifstream fin2("output.txt");
+    ofstream out2("output2.txt");
+
+    string myWord2;
+
+    getline(fin2,myWord2);
+
+    int j{};
+    while(myWord2.length() != j)
+    {
+        if(myWord2[j] == ' ') { j++; continue; }
+
+        if(myWord2[j] + 4 >= 65 && myWord2[j] + 4 <= 90)
+        {
+            myWord2[j] = myWord2[j] + 4;
+        }
+        else
+        {
+            myWord2[j] = myWord2[j] + 4 - 26;
+        }
+
+        j++;
+    }
+
+    fin2.close();
+
+    out2 << myWord2 << endl;
+    out2.close();
+
+}
