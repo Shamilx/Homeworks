@@ -6,47 +6,45 @@ class Node
 {
 public:
     int val{};
-    Node* next{};
-    Node(){ }
+    Node *next{};
+    Node() {}
 };
 
 class List
 {
-    Node* root{};
+    Node *root{};
 
-       
 public:
-    void pushRecursion(Node* root,int val);
-    void popRecursion(Node* root,Node* prev);
+    void pushRecursion(Node *root, int val);
+    void popRecursion(Node *root, Node *prev);
 
     void push(int val)
     {
-        if(root == NULL)
+        if (root == NULL)
         {
             root = new Node();
             root->val = val;
             return;
         }
-        pushRecursion(root,val);
+        pushRecursion(root, val);
     }
 
     void pop()
     {
-        if(root == NULL)
+        if (root == NULL)
         {
             try
             {
                 delete root;
                 throw 1;
             }
-            catch(int a)
+            catch (int a)
             {
                 cout << "Liste melumat at." << endl;
                 return;
             }
         }
-        
-        popRecursion(root,root);
+        popRecursion(root, root);
     }
 
     void print()
@@ -54,53 +52,47 @@ public:
         printRecursion(root);
     }
 
-    void printRecursion(Node* root) // 5,4,3,2,1
+    void printRecursion(Node *root) // 5,4,3,2,1
     {
-        if(root == NULL) return;
+        if (root == NULL)
+            return;
         cout << root->val << endl;
         printRecursion(root->next);
         return;
     }
 };
 
-void List::popRecursion(Node* current,Node* prev) // 1,2,3,4,5
+void List::popRecursion(Node *current, Node *prev) // 1,2,3,4,5
 {
-    if(current->next == NULL)
+    if (current->next == NULL)
     {
         delete current;
         prev->next = NULL;
         return;
     }
-    else if(current->next != prev->next)
+    else if (current->next != prev->next)
     {
-        popRecursion(current->next,prev->next);
+        popRecursion(current->next, prev->next);
     }
     else
     {
-        popRecursion(current->next,prev);
+        popRecursion(current->next, prev);
     }
-
 }
-void List::pushRecursion(Node* root,int val)
+void List::pushRecursion(Node *root, int val)
 {
-    if(root == NULL) return;
+    if (root == NULL)
+        return;
 
-    if(root->next == NULL)
+    if (root->next == NULL)
     {
         root->next = new Node();
         root->next->val = val;
         return;
     }
-
-    pushRecursion(root->next,val);
+    pushRecursion(root->next, val);
 }
 
 int main()
 {
-    List obj1;
-    obj1.push(5);
-    obj1.push(6);
-    obj1.push(7);
-    obj1.pop();
-    obj1.print();
 }
