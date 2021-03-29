@@ -70,3 +70,4 @@ int main()
     Mercedes.addPerson("Shamil");
     Mercedes.deletePerson("Omer");
     cout << Mercedes.getPrice();
+}
